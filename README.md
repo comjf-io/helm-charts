@@ -1,16 +1,20 @@
-# helm-charts
+## Usage
 
-Repository for Helm-charts used by me.
+[Helm](https://helm.sh) must be installed to use the charts.  Please refer to
+Helm's [documentation](https://helm.sh/docs) to get started.
 
-> **_NOTE:_** Never commit company specific configuration into this repo.
->
-> Even though this github repo is "private" the helm chart repository (`gh-pages`) hosting the packaged charts is [public](https://comjf-io.github.io/helm-charts/).
->
-> Once [OCI format for helm sources](https://github.com/fluxcd/source-controller/issues/124) is supported by flux, we can move these charts to [ECR](https://docs.aws.amazon.com/AmazonECR/latest/userguide/push-oci-artifact.html).
+Once Helm has been set up correctly, add the repo as follows:
 
+  helm repo add comjf-io https://comjf-io.github.io/helm-charts
 
-### Bootstrap documentation
+If you had already added this repo earlier, run `helm repo update` to retrieve
+the latest versions of the packages.  You can then run `helm search repo
+comjf-io` to see the charts.
 
-- [Github action for chart deployment](https://helm.sh/docs/howto/chart_releaser_action/)
-  - Note: [In your repo, go to Settings/Pages. Change the Source Branch to gh-pages.](https://github.com/marketplace/actions/helm-chart-releaser#example-workflow)
-- [Chart Test & Linting](https://github.com/helm/chart-testing-action)
+To install the spicedb chart:
+
+    helm install my-spicedb comjf-io/spicedb
+
+To uninstall the chart:
+
+    helm delete my-spicedb
