@@ -31,6 +31,23 @@ spec:
               {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- if and .Values.grpc.enabled (not .Values.grpc.presharedKey) }}
+            - name: SPICEDB_GRPC_PRESHARED_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ required "'grpc.presharedKeySecretName' is required" .Values.grpc.presharedKeySecretName }}
+                  key: key
+                  optional: false
+            {{- end }}
+            {{- if and (ne .Values.datastore.engine "memory") .Values.datastore.connection.uriSecretName }}
+            - name: SPICEDB_DATASTORE_CONN_URI
+              valueFrom:
+                secretKeyRef:
+                  name: {{ required "'datastore.connection.uriSecretName' is required" .Values.datastore.connection.uriSecretName }}
+                  key: uri
+                  optional: false
+            {{- end }}
           args:
             - serve
             - --grpc-enabled={{ .Values.grpc.enabled }}
@@ -40,11 +57,11 @@ spec:
             - --dashboard-enabled={{ .Values.dashboard.enabled }}
             - --datastore-engine={{ .Values.datastore.engine }}
 
-            {{- if ne .Values.datastore.engine "memory" }}
+            {{- if and (ne .Values.datastore.engine "memory") (not .Values.datastore.connection.uriSecretName) }}
             - --datastore-conn-uri={{ .Values.datastore.connection.uri }}
             {{- end }}
 
-            {{- if .Values.grpc.enabled }}
+            {{- if and .Values.grpc.enabled (not .Values.grpc.presharedKeySecretName) }}
             - --grpc-preshared-key={{ required "'grpc.presharedKey' is required" .Values.grpc.presharedKey }}
             {{- end }}
 

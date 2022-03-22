@@ -9,7 +9,9 @@ dashboard:
 datastore:
   engine: memory
   connection:
+    ### Define either uri or uriSecretName but not both
     uri:
+    uriSecretName:
     maxOpenConn: 20
     minOpenConn: 10
   gc:
@@ -28,7 +30,9 @@ grpc:
     enabled: false
     cert:
     key:
+  ### Define either presharedKey or presharedKeySecretName but not both
   presharedKey:
+  presharedKeySecretName:
   maxConnAge: 30s
   network: tcp
   shutdownGracePeriod: 5s
