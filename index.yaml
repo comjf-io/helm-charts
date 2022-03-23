@@ -12,4 +12,32 @@ entries:
     urls:
     - https://github.com/comjf-io/helm-charts/releases/download/spicedb-0.0.2/spicedb-0.0.2.tgz
     version: 0.0.2
-generated: "2022-03-22T17:56:26.187724381Z"
+  vertical-pod-autoscaler:
+  - annotations:
+      artifacthub.io/signKey: |
+        fingerprint: 9E57D2479D48B84463EF491F66D280CE667AD6C8
+        url: https://cowboysysop.github.io/charts/pgp-public-key-2022-02-19.asc
+      kubeVersion: '>=1.17'
+    apiVersion: v2
+    appVersion: 0.10.0
+    created: "2022-03-23T16:07:41.558278082Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami/
+      version: 1.7.1
+    description: Set of components that automatically adjust the amount of CPU and
+      memory requested by pods running in the Kubernetes Cluster
+    digest: 3358370e34899c4031b8981a919ee6ebda5d059d5c0b6b3dc69bc2c1c8be3130
+    home: https://github.com/kubernetes/autoscaler
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    maintainers:
+    - email: sebastien.prudhomme@gmail.com
+      name: sebastien-prudhomme
+    name: vertical-pod-autoscaler
+    sources:
+    - https://github.com/kubernetes/autoscaler
+    - https://github.com/cowboysysop/charts/tree/master/charts/vertical-pod-autoscaler
+    urls:
+    - https://github.com/comjf-io/helm-charts/releases/download/vertical-pod-autoscaler-4.1.0/vertical-pod-autoscaler-4.1.0.tgz
+    version: 4.1.0
+generated: "2022-03-23T16:07:41.558321482Z"
