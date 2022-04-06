@@ -72,6 +72,10 @@ spec:
             - --dispatch-upstream-addr=kubernetes://{{ include "spicedb.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.dispatch.port }}
             {{- end -}}
 
+            {{- if .Values.dispatch.ca.enabled }}
+            - --dispatch-upstream-ca-path={{ required "'dispatch.ca.path' is required when 'dispatch.ca.enabled'" .Values.dispatch.ca.path }}
+            {{- end -}}
+
             {{- if .Values.metrics.enabled }}
             {{- end -}}
 
@@ -105,6 +109,18 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+
+      {{- if .Values.dispatch.ca.enabled }}
+          volumeMounts:
+            - mountPath: {{ .Values.dispatch.ca.path }}
+              name: dispatch-ca
+              readOnly: true
+      volumes:
+        - name: dispatch-ca
+          secret:
+            secretName: {{ required "'dispatch.ca.secretName' is required when 'dispatch.ca.enabled'" .Values.dispatch.ca.secretName }}
+      {{- end -}}
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
