@@ -22,7 +22,11 @@ datastore:
 dispatch:
   enabled: true
   port: 50053
-
+  ca:
+    enabled: false
+    path: /etc/dispatch/tls
+    ### Required (if ca.enabled)
+    secretName:
 grpc:
   enabled: true
   port: 50051

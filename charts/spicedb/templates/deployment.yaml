@@ -9,6 +9,12 @@ spec:
   selector:
     matchLabels:
       {{- include "spicedb.selectorLabels" . | nindent 6 }}
+  strategy:
+    rollingUpdate:
+      maxSurge: "25%"
+      maxUnavailable: "25%"
+    type: "RollingUpdate"
+  progressDeadlineSeconds: 600
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,6 +24,9 @@ spec:
       labels:
         {{- include "spicedb.selectorLabels" . | nindent 8 }}
     spec:
+      dnsPolicy: "ClusterFirst"
+      restartPolicy: "Always"
+      terminationGracePeriodSeconds: 30
       {{- with .Values.image.pullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -32,6 +41,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: "SPICEDB_GRPC_SHUTDOWN_GRACE_PERIOD"
+              value: "1s"
             {{- if and .Values.grpc.enabled (not .Values.grpc.presharedKey) }}
             - name: SPICEDB_GRPC_PRESHARED_KEY
               valueFrom:
@@ -84,6 +95,13 @@ spec:
 
             {{- if .Values.dashboard.enabled }}
             {{- end }}
+
+            {{- range $key, $value := .Values.extraArgs }}
+            {{- if $value }}
+            - --{{ $key }}={{ $value }}
+            {{- else }}
+            - --{{ $key }}
+            {{- end }}
           ports:
             {{- if .Values.grpc.enabled }}
             - containerPort: {{ .Values.grpc.port }}
@@ -112,6 +130,13 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          readinessProbe:
+            exec:
+              command: ["grpc_health_probe", "-v", "-addr=localhost:50051"]
+            failureThreshold: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
