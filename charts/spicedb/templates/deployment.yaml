@@ -83,6 +83,13 @@ spec:
             - --dispatch-upstream-addr=kubernetes://{{ include "spicedb.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.dispatch.port }}
             {{- end -}}
 
+            {{- range $key, $value := .Values.extraArgs }}
+            {{- if $value }}
+            - --{{ $key }}={{ $value }}
+            {{- else }}
+            - --{{ $key }}
+            {{- end }}
+
             {{- if .Values.metrics.enabled }}
             {{- end -}}
 
