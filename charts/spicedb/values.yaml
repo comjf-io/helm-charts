@@ -35,7 +35,7 @@ grpc:
   presharedKeySecretName:
   maxConnAge: 30s
   network: tcp
-  shutdownGracePeriod: 5s
+  shutdownGracePeriod: 30s
 
 http:
   enabled: true

@@ -75,6 +75,7 @@ spec:
 
             {{- if and .Values.grpc.enabled (not .Values.grpc.presharedKeySecretName) }}
             - --grpc-preshared-key={{ required "'grpc.presharedKey' is required" .Values.grpc.presharedKey }}
+            - --grpc-shutdown-grace-period={{ .Values.grpc.shutdownGracePeriod }}
             {{- end }}
 
             {{- if .Values.http.enabled }}
