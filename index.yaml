@@ -3,6 +3,17 @@ entries:
   spicedb:
   - apiVersion: v2
     appVersion: v1.4.0
+    created: "2022-04-21T19:05:38.609298115Z"
+    description: A Helm chart to manage a Kubernetes based deployment of Authzed spicedb.
+      For more information see https://github.com/authzed/spicedb.
+    digest: afd81434b42b130b90a6bb48595aa91d6df0d5c64becac6d6358ec7daf78855c
+    name: spicedb
+    type: application
+    urls:
+    - https://github.com/comjf-io/helm-charts/releases/download/spicedb-0.1.2/spicedb-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: v1.4.0
     created: "2022-04-15T16:44:46.120574761Z"
     description: A Helm chart to manage a Kubernetes based deployment of Authzed spicedb.
       For more information see https://github.com/authzed/spicedb.
@@ -194,4 +205,4 @@ entries:
     urls:
     - https://github.com/comjf-io/helm-charts/releases/download/vertical-pod-autoscaler-4.1.0/vertical-pod-autoscaler-4.1.0.tgz
     version: 4.1.0
-generated: "2022-04-15T16:44:46.121022466Z"
+generated: "2022-04-21T19:05:38.609474014Z"
