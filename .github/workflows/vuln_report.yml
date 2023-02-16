@@ -1,0 +1,31 @@
+name: EventBridge Receiver
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Event Type'
+        required: true
+        type: string
+        default: 'INIT_SCAN_COMPLETE'
+      repo:
+        description: 'Repository Name'
+        required: true
+        type: string
+      image_tag:
+        description: 'ECR Image Tag'
+        required: true
+        type: string
+
+permissions:
+  id-token: write # This is required for requesting the JWT used in the OIDC assume-role call for AWS permissions
+
+jobs:
+  vuln_report:
+    runs-on: ubuntu-latest
+    steps:
+    - name: dispatch trigger
+      if: github.event.inputs.type == 'INIT_SCAN_COMPLETE'
+      run: |
+        echo "workflow_dispatch ${{ github.event.inputs.type }} -- ${{ github.event.inputs.repo }} -- ${{ github.event.inputs.image_tag }}"
+
