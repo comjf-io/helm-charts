@@ -11,6 +11,9 @@ metadata:
 spec:
   ttlSecondsAfterFinished: 600
   template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: spicedb
     spec:
       tolerations:
         - effect: NoSchedule
