@@ -98,6 +98,10 @@ spec:
 
             {{- if .Values.dashboard.enabled }}
             {{- end }}
+
+            {{- if .Values.watch.heartbeat }}
+            - --watch-api-heartbeat={{ .Values.watch.heartbeat }}
+            {{- end}}
           ports:
             {{- if .Values.grpc.enabled }}
             - containerPort: {{ .Values.grpc.port }}

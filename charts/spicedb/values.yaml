@@ -49,6 +49,9 @@ metrics:
     cert:
     key:
 
+watch:
+  heartbeat:
+
   # disable-v1-schema-api
   # ns-cache-expiration
   # schema-prefixes-required
