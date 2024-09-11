@@ -50,7 +50,7 @@ metrics:
     key:
 
 watch:
-  heartbeat: 2s
+  heartbeat:
 
   # disable-v1-schema-api
   # ns-cache-expiration
