@@ -367,6 +367,16 @@ entries:
   spring-boot-app:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-10-29T18:30:48.339525649Z"
+    description: A Helm chart for spring boot app
+    digest: 9701558c6e2aab8aef8efd3fb1780d7e9a17853f9be14a099ef1d8db44fc8518
+    name: spring-boot-app
+    type: application
+    urls:
+    - https://github.com/comjf-io/helm-charts/releases/download/spring-boot-app-0.1.1/spring-boot-app-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-10-29T17:55:22.040283818Z"
     description: A Helm chart for spring boot app
     digest: 9ff72fd15883f6bd94b20bc05d77756d43c96dec9e6399c5f8d3e3ca93dc305c
@@ -403,4 +413,4 @@ entries:
     urls:
     - https://github.com/comjf-io/helm-charts/releases/download/vertical-pod-autoscaler-4.1.0/vertical-pod-autoscaler-4.1.0.tgz
     version: 4.1.0
-generated: "2024-10-29T17:55:22.0405105Z"
+generated: "2024-10-29T18:30:48.339712938Z"
