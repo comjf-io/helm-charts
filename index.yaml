@@ -364,6 +364,17 @@ entries:
     urls:
     - https://github.com/comjf-io/helm-charts/releases/download/spicedb-0.0.2/spicedb-0.0.2.tgz
     version: 0.0.2
+  spring-boot-app:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-10-29T17:55:22.040283818Z"
+    description: A Helm chart for spring boot app
+    digest: 9ff72fd15883f6bd94b20bc05d77756d43c96dec9e6399c5f8d3e3ca93dc305c
+    name: spring-boot-app
+    type: application
+    urls:
+    - https://github.com/comjf-io/helm-charts/releases/download/spring-boot-app-0.1.0/spring-boot-app-0.1.0.tgz
+    version: 0.1.0
   vertical-pod-autoscaler:
   - annotations:
       artifacthub.io/signKey: |
@@ -392,4 +403,4 @@ entries:
     urls:
     - https://github.com/comjf-io/helm-charts/releases/download/vertical-pod-autoscaler-4.1.0/vertical-pod-autoscaler-4.1.0.tgz
     version: 4.1.0
-generated: "2024-10-15T21:03:54.160822523Z"
+generated: "2024-10-29T17:55:22.0405105Z"
