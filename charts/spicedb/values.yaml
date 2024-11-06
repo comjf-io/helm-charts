@@ -12,6 +12,8 @@ dashboard:
 
 datastore:
   engine: memory
+  awsIam:
+    enabled: false
   connection:
     ### Define either uri or uriSecretName but not both
     uri:

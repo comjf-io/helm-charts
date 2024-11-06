@@ -69,6 +69,10 @@ spec:
             - --datastore-conn-min-open={{ .Values.datastore.connection.minOpenConn }}
             - --grpc-shutdown-grace-period={{ .Values.grpc.shutdownGracePeriod }}
 
+            {{- if .Values.datastore.awsIam.enabled }}
+            - --datastore-credentials-provider-name=aws-iam
+            {{-end }}
+
             {{- if and (ne .Values.datastore.engine "memory") (not .Values.datastore.connection.uriSecretName) }}
             - --datastore-conn-uri={{ .Values.datastore.connection.uri }}
             {{- end }}
