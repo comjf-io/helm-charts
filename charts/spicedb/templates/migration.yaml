@@ -31,6 +31,9 @@ spec:
           args:
             - migrate
             - head
+            {{- if .Values.datastore.awsIam.enabled }}
+            - --datastore-credentials-provider-name=aws-iam
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
