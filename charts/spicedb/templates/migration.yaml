@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "spicedb.labels" . | nindent 4 }}
   annotations:
-    "helm.sh/hook": pre-install,post-upgrade
+    "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "-5"
     "helm.sh/hook-delete-policy": hook-succeeded
 spec:
@@ -15,6 +15,7 @@ spec:
       labels:
         app.kubernetes.io/name: spicedb
     spec:
+      serviceAccountName: spicedb
       tolerations:
         - effect: NoSchedule
           key: eks.amazonaws.com/compute-type
