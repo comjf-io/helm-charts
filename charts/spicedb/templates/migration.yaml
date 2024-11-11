@@ -15,7 +15,7 @@ spec:
       labels:
         app.kubernetes.io/name: spicedb
     spec:
-      serviceAccountName: spicedb
+      serviceAccountName: {{ include "spicedb.serviceAccountName" . }}
       tolerations:
         - effect: NoSchedule
           key: eks.amazonaws.com/compute-type
