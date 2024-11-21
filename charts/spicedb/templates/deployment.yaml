@@ -63,10 +63,11 @@ spec:
             - --http-enabled={{ .Values.http.enabled }}
             - --dispatch-cluster-enabled={{ .Values.dispatch.enabled }}
             - --metrics-enabled={{ .Values.metrics.enabled }}
-            - --dashboard-enabled={{ .Values.dashboard.enabled }}
             - --datastore-engine={{ .Values.datastore.engine }}
-            - --datastore-conn-max-open={{ .Values.datastore.connection.maxOpenConn }}
-            - --datastore-conn-min-open={{ .Values.datastore.connection.minOpenConn }}
+            - --datastore-conn-pool-read-max-open={{ .Values.datastore.connection.poolReadMaxOpen }}
+            - --datastore-conn-pool-read-min-open={{ .Values.datastore.connection.poolReadMinOpen }}
+            - --datastore-conn-pool-write-max-open={{ .Values.datastore.connection.poolWriteMaxOpen }}
+            - --datastore-conn-pool-write-min-open={{ .Values.datastore.connection.poolWriteMinOpen }}
             - --grpc-shutdown-grace-period={{ .Values.grpc.shutdownGracePeriod }}
 
             {{- if .Values.datastore.awsIam.enabled }}
