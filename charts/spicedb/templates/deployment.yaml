@@ -106,6 +106,10 @@ spec:
             {{- if .Values.watch.heartbeat }}
             - --watch-api-heartbeat={{ .Values.watch.heartbeat }}
             {{- end}}
+
+            {{- if .Values.dispatch.concurrencyLimit }}
+            - --dispatch-concurrency-limit={{ .Values.dispatch.concurrencyLimit }}
+            {{- end}}
           ports:
             {{- if .Values.grpc.enabled }}
             - containerPort: {{ .Values.grpc.port }}

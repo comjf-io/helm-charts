@@ -28,6 +28,7 @@ datastore:
 dispatch:
   enabled: true
   port: 50053
+  concurrencyLimit:
 
 grpc:
   enabled: true
