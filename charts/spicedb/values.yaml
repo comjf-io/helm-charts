@@ -6,10 +6,6 @@ service:
     ### Required (if dispatch.tls.enabled)
     secretName:
 
-dashboard:
-  enabled: true
-  port: 8080
-
 datastore:
   engine: memory
   awsIam:
@@ -18,8 +14,10 @@ datastore:
     ### Define either uri or uriSecretName but not both
     uri:
     uriSecretName:
-    maxOpenConn: 50
-    minOpenConn: 10
+    poolReadMaxOpen: 20
+    poolReadMinOpen: 20
+    poolWriteMaxOpen: 10
+    poolWriteMinOpen: 10
   gc:
     interval: 3m0s
     maxOperationTime: 1m0s
@@ -54,10 +52,6 @@ metrics:
 
 watch:
   heartbeat:
-
-  # disable-v1-schema-api
-  # ns-cache-expiration
-  # schema-prefixes-required
 
 replicas: 3
 
