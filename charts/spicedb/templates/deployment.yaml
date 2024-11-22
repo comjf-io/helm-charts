@@ -101,9 +101,6 @@ spec:
             {{- if .Values.metrics.enabled }}
             {{- end -}}
 
-            {{- if .Values.dashboard.enabled }}
-            {{- end }}
-
             {{- if .Values.watch.heartbeat }}
             - --watch-api-heartbeat={{ .Values.watch.heartbeat }}
             {{- end}}
@@ -121,11 +118,6 @@ spec:
             - containerPort: {{ .Values.http.port }}
               protocol: TCP
               name: http
-            {{- end }}
-            {{- if .Values.dashboard.enabled }}
-            - containerPort: {{ .Values.dashboard.port }}
-              protocol: TCP
-              name: dashboard
             {{- end }}
             {{- if .Values.dispatch.enabled }}
             - containerPort: {{ .Values.dispatch.port }}
